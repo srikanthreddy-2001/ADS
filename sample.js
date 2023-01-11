@@ -12,8 +12,6 @@ function getNode(data){
 	temp.next = null
 	return temp
 }
-
-// Function to print the Linked List
 function printList(head){
 	while (head.next){
 		document.write(head.val,' -> ')
@@ -21,89 +19,42 @@ function printList(head){
 	}
 	document.write(head.val,'')
 }
-
-// Function that removes continuous nodes
-// whose sum is K
 function removeZeroSum(head, K){
-
-	// Root node initialise to 0
 	let root = new ListNode(0)
-
-	// Append at the front of the given
-	// Linked List
 	root.next = head
-
-	// Map to store the sum and reference
-	// of the Node
 	let umap = new Map();
-
 	umap.set(0,root)
-
-	// To store the sum while traversing
 	let sum = 0
-
-	// Traversing the Linked List
 	while (head != null){
-
-		// Find sum
 		sum += head.val
-
-		// If found value with (sum - K)
 		if (umap.has(sum - K) == true){
-
 			let prev = umap.get(sum - K)
 			let start = prev
-
-			// Delete all the node
-			// traverse till current node
 			let aux = sum
-
-			// Update sum
 			sum = sum - K
-
-			// Traverse till current head
 			while (prev != head){
 				prev = prev.next
 				aux += prev.val
 				if (prev != head)
 					umap.delete(aux)
 			}
-
-			// Update the start value to
-			// the next value of current head
 			start.next = head.next
 		}
-
-		// If (sum - K) value not found
 		else
 			umap.set(sum,head)
-
 		head = head.next
 	}
-
-	// Return the value of updated
-	// head node
 	return root.next
 }
-
-
-// Driver Code
-
-// Create Linked List
 let head = getNode(1)
 head.next = getNode(2)
 head.next.next = getNode(-3)
 head.next.next.next = getNode(3)
 head.next.next.next.next = getNode(1)
-
 let K = 5
-
 head = removeZeroSum(head, K)
-
-
 if(head != null)
 	printList(head)
-
 
 // 2 Javascript program to merge a linked list into another at alternate positions a nexted list node
 class Node
@@ -172,8 +123,6 @@ console.log( "Modified Second Linked List:<br>");
 printList(q);
 
 // 3.Merge a linked list into another linked list at alternate positions.
-
-// A nexted list node
 class Node
 {
 	constructor()
@@ -182,8 +131,6 @@ class Node
 		this.next = null;
 	}
 };
-
-/* Function to insert a node at the beginning */
 function push(head_ref, new_data)
 {
 	var new_node = new Node();
@@ -191,10 +138,7 @@ function push(head_ref, new_data)
 	new_node.next = (head_ref);
 	(head_ref) = new_node;
 	return head_ref;
-
 }
-
-/* Utility function to print a singly linked list */
 function printList(head)
 {
 	var temp = head;
@@ -206,36 +150,22 @@ function printList(head)
 	console.log("<br>");
 }
 
-// Main function that inserts nodes of linked list q into p at
-// alternate positions. Since head of first list never changes
-// and head of second list may change, we need single pointer
-// for first list and double pointer for second list.
 function merge(p, q)
 {
 	var p_curr = p, q_curr = q;
 	var p_next, q_next;
-
-	// While there are available positions in p
 	while (p_curr != null && q_curr != null)
 	{
-		// Save next pointers
 		p_next = p_curr.next;
 		q_next = q_curr.next;
-
-		// Make q_curr as next of p_curr
-		q_curr.next = p_next; // Change next pointer of q_curr
-		p_curr.next = q_curr; // Change next pointer of p_curr
-
-		// Update current pointers for next iteration
+		q_curr.next = p_next; 
+		p_curr.next = q_curr; 
 		p_curr = p_next;
 		q_curr = q_next;
 	}
-
-	q = q_curr; // Update head pointer of second list
+	q = q_curr; 
 	return q;
 }
-
-// Driver code
 var p = null, q = null;
 p = push(p, 3);
 p = push(p, 2);
@@ -255,9 +185,7 @@ printList(p);
 console.log( "Modified Second Linked List:<br>");
 printList(q);
 
-
-
-	//4 In an array, Count Pairs with given sum
+// 4 In an array, Count Pairs with given sum
 	
 	function getPairsCount(arr, n, sum)
 {
@@ -313,22 +241,14 @@ function move(arr){
 	arr.sort();
 }
 
-// driver code
-
 let arr = [ -1, 2, -3, 4, 5, 6, -7, 8, 9 ];
 move(arr);
 for (let e of arr)
 	document.write(e , " ");
 
-// This code is contributed by shinjanpatra
-
-
-
-
 
 // 8 Reverse a string using a stack data structure
 var head; 
-	/* Linked list Node */
 	class Node {
 			constructor(val) {
 				this.data = val;
@@ -342,7 +262,6 @@ var head;
 		var next = null;
 		var prev = null;
 		var count = 0;
-		/* Reverse first k nodes of linked list */
 		while (count < k && current != null) {
 			next = current.next;
 			current.next = prev;
@@ -350,16 +269,8 @@ var head;
 			current = next;
 			count++;
 		}
-		/*
-		next is now a pointer to (k+1)th node
-		Recursively call for the list starting
-		from current. And make rest of the list
-		as next of first node
-		*/
 		if (next != null)
 			head.next = reverse(next, k);
-
-		// prev is now head of input list
 		return prev;
 	}
 	function push(new_data) {
@@ -384,18 +295,13 @@ var head;
 		push(3);
 		push(2);
 		push(1);
-
 		console.log("Given Linked List");
 		printList();
-
 		head = reverse(head, 3);
-
 		console.log("Reversed list");
 		printList();
 
-
 /* 9 Evaluate a postfix expression using stack*/
-
 function evaluatePostfix(exp)
 {
 	let stack = [];
@@ -446,13 +352,11 @@ console.log(evaluatePostfix(exp));
 
 //10 Implement a queue using the stack data structure
 class Queue{
-      
 	constructor()
 	{
 		this.s1 = [];
 		this.s2 = [];
 	}
-	  
 	enQueue(x)
 	{
 		while (this.s1.length != 0)
